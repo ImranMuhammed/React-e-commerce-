@@ -43,7 +43,9 @@ export default function CartItemsList() {
                   />
                   <div className={styles.product_info}>
                     <h4>{cartItem.product.title} </h4>
-                    <h5>Price : {cartItem.product.price} </h5>
+                    <h5>Price : {cartItem.product.price} rupees </h5>
+                    {cartItem.size && <h5>size : {cartItem.size} </h5>}
+
                     <p
                       onClick={() =>
                         dispatch(removeItemFromCart(cartItem.product.id))

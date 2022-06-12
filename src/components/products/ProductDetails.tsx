@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/store/hooks";
 import styles from "./Product.module.css";
 import Currency from "react-currency-formatter";
 import { addItemTocart } from "../../redux/slices/cartSlice";
+import { StarIcon } from "@heroicons/react/solid";
 
 export default function ProductDetails() {
   const { productId }: any = useParams();
@@ -39,6 +40,7 @@ export default function ProductDetails() {
       qty: qty,
     };
     dispatch(addItemTocart(cart));
+    setQty(1);
   };
 
   if (product) {
@@ -53,6 +55,12 @@ export default function ProductDetails() {
             {product.category}
           </p>
           <h2>{product.title}</h2>
+
+          <div className={styles.rating} >
+          {[...Array(Math.ceil(product.rating.rate))].map((_, index) => {
+            return <StarIcon key={index} height={20} />;
+          })}
+        </div>
           <h2>
             <Currency quantity={product.price} currency="INR" />{" "}
           </h2>

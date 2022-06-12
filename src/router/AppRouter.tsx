@@ -7,7 +7,7 @@ import ProductDetails from "../components/products/ProductDetails";
 
 export default function AppRouter() {
   return (
-    <>
+    <div style={{margin:"auto", maxWidth:"1200px"}} >
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -16,6 +16,6 @@ export default function AppRouter() {
           <Route path="/cart" element={<CartItemsList />} />
         </Routes>
       </Suspense>
-    </>
+    </div>
   );
 }

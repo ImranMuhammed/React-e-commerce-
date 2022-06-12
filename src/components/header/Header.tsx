@@ -22,7 +22,12 @@ export default function Header() {
   return (
     <header>
       <div className={styles["category-container"]}>
-        <h2 style={{ marginRight: "3rem" }}>DRIP</h2>
+        <h2
+          style={{ marginRight: "3rem", cursor: "pointer" }}
+          onClick={() => navigate("/", { replace: true })}
+        >
+          ZEROZILLA
+        </h2>
         <>
           <Link to="/">Home</Link>
           {categories.map((category, index) => {
