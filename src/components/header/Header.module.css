@@ -54,3 +54,25 @@ header {
   border-radius: 40%;
   font-weight: 600;
 }
+
+.searchContainer {
+  width: 20rem;
+  height: 2rem;
+  border: 1px solid #bbbbbb;
+  padding: 0.2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 2rem;
+}
+
+.searchContainer > input {
+  border: none;
+  outline-width: 0;
+  width: 90%;
+}
+
+.searchContainer > svg {
+  height: 100%;
+  cursor: pointer;
+}

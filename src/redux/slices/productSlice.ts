@@ -1,14 +1,16 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../../models/models";
 
 export interface ProductState {
   products: Product[];
   categories: string[];
+  searchText: string;
 }
 
 const initialState: ProductState = {
   products: [],
   categories: [],
+  searchText: "",
 };
 
 export const getAllCategories = createAsyncThunk("categories/get", async () => {
@@ -25,7 +27,7 @@ export const getAllProducts = createAsyncThunk("products/get", async () => {
 
 export const getProductById = createAsyncThunk(
   "products/:id/get",
-  async (productId:number) => {
+  async (productId: number) => {
     const products_details = await fetch(
       `https://fakestoreapi.com/products/${productId}`
     );
@@ -46,7 +48,11 @@ export const getProductsByCategory = createAsyncThunk(
 export const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    addSearchText: (state, action: PayloadAction<string>) => {
+      state.searchText = action.payload.trim().toLowerCase();
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getAllCategories.fulfilled, (state, { payload }) => {
       state.categories = payload.length > 0 ? payload : [];
@@ -61,9 +67,11 @@ export const productsSlice = createSlice({
     });
 
     builder.addCase(getProductById.fulfilled, (state, { payload }) => {
-      state.products = [{...payload}]
+      state.products = [{ ...payload }];
     });
   },
 });
+
+export const {addSearchText}=productsSlice.actions;
 
 export default productsSlice.reducer;

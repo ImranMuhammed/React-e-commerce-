@@ -1,14 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getAllCategories } from "../../redux/slices/productSlice";
+import {
+  addSearchText,
+  getAllCategories,
+} from "../../redux/slices/productSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/store/hooks";
 import styles from "./Header.module.css";
-import { ShoppingCartIcon } from "@heroicons/react/outline";
+import { ShoppingCartIcon, SearchIcon } from "@heroicons/react/outline";
 
 export default function Header() {
   const navigate = useNavigate();
   const { categories } = useAppSelector((state) => state.products);
   const { cartItems } = useAppSelector((state) => state.carts);
+  const [searchText, setSearchText] = useState("");
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -17,6 +21,10 @@ export default function Header() {
 
   const getTotalItemsInCart = () => {
     return cartItems.reduce((a, b) => a + b.qty, 0);
+  };
+
+  const handleSearchClick = () => {
+    dispatch(addSearchText(searchText));
   };
 
   return (
@@ -38,6 +46,16 @@ export default function Header() {
             );
           })}
         </>
+      </div>
+
+      <div className={styles.searchContainer}>
+        <input
+          placeholder="Search here"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+
+        <SearchIcon onClick={handleSearchClick} />
       </div>
 
       <div className={styles.cart} onClick={() => navigate("/cart")}>
