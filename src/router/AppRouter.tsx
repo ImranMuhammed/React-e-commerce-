@@ -1,13 +1,18 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import CartItemsList from "../components/cart/CartItemsList";
-import CategoriesList from "../components/categories/CategoriesList";
-import Home from "../components/home/Home";
-import ProductDetails from "../components/products/ProductDetails";
+
+const Home = lazy(() => import("../components/home/Home"));
+const CartItemsList = lazy(() => import("../components/cart/CartItemsList"));
+const CategoriesList = lazy(
+  () => import("../components/categories/CategoriesList")
+);
+const ProductDetails = lazy(
+  () => import("../components/products/ProductDetails")
+);
 
 export default function AppRouter() {
   return (
-    <div style={{margin:"auto", maxWidth:"1200px"}} >
+    <div style={{ margin: "auto", maxWidth: "1200px" }}>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
