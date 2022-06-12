@@ -13,6 +13,7 @@ export default function Home() {
     dispatch(getAllProducts());
   }, [dispatch]);
 
+
   return (
     <div className={styles.container}>
       {products?.map((product, index) => {

@@ -40,6 +40,7 @@ header {
 .cart svg {
   float: right;
   height: 2rem;
+  cursor: pointer;
 }
 
 .cart p {

@@ -1,11 +1,12 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAllCategories } from "../../redux/slices/productSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/store/hooks";
 import styles from "./Header.module.css";
 import { ShoppingCartIcon } from "@heroicons/react/outline";
 
 export default function Header() {
+  const navigate = useNavigate();
   const { categories } = useAppSelector((state) => state.products);
   const { cartItems } = useAppSelector((state) => state.carts);
   const dispatch = useAppDispatch();
@@ -13,6 +14,10 @@ export default function Header() {
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
+
+  const getTotalItemsInCart = () => {
+    return cartItems.reduce((a, b) => a + b.qty, 0);
+  };
 
   return (
     <header>
@@ -30,9 +35,9 @@ export default function Header() {
         </>
       </div>
 
-      <div className={styles.cart}>
+      <div className={styles.cart} onClick={() => navigate("/cart")}>
         <ShoppingCartIcon />
-        {cartItems.length > 0 && <p>{cartItems.length}</p>}
+        {cartItems.length > 0 && <p>{getTotalItemsInCart()}</p>}
       </div>
     </header>
   );

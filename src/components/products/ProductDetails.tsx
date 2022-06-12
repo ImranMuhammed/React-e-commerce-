@@ -4,7 +4,7 @@ import { getProductById } from "../../redux/slices/productSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/store/hooks";
 import styles from "./Product.module.css";
 import Currency from "react-currency-formatter";
-import { addTocart } from "../../redux/slices/cartSlice";
+import { addItemTocart } from "../../redux/slices/cartSlice";
 
 export default function ProductDetails() {
   const { productId }: any = useParams();
@@ -19,9 +19,7 @@ export default function ProductDetails() {
   }, [productId, dispatch]);
 
   const handleIncrement = () => {
-    if (qty < 3) {
-      setQty((qty) => qty + 1);
-    }
+    setQty((qty) => qty + 1);
   };
 
   const handleDecrement = () => {
@@ -40,7 +38,7 @@ export default function ProductDetails() {
       size: size,
       qty: qty,
     };
-    dispatch(addTocart(cart));
+    dispatch(addItemTocart(cart));
   };
 
   if (product) {
@@ -60,25 +58,29 @@ export default function ProductDetails() {
           </h2>
 
           <div className={styles.counter}>
-            <h4 style={{ marginBottom: "0.7rem" }}>Select Qty(3 Max) </h4>
+            <h4 style={{ marginBottom: "0.7rem" }}>Select Qty </h4>
             <span onClick={handleDecrement}>-</span>
             <span>{qty}</span>
             <span onClick={handleIncrement}>+</span>
           </div>
 
-          <div className={styles.sizes}>
-            {availableSizes.map((s, index) => {
-              return (
-                <div
-                  key={index}
-                  className={s === size ? styles.selected : ""}
-                  onClick={() => handleChangeSize(s)}
-                >
-                  {s}{" "}
-                </div>
-              );
-            })}
-          </div>
+          {(product.category.toLowerCase() === "men's clothing".toLowerCase() ||
+            product.category.toLowerCase() ===
+              "women's clothing".toLowerCase()) && (
+            <div className={styles.sizes}>
+              {availableSizes.map((s, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={s === size ? styles.selected : ""}
+                    onClick={() => handleChangeSize(s)}
+                  >
+                    {s}{" "}
+                  </div>
+                );
+              })}
+            </div>
+          )}
 
           <button onClick={handleAddToCart}>Add to cart</button>
 
