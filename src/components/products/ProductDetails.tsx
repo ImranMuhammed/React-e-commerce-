@@ -4,6 +4,7 @@ import { getProductById } from "../../redux/slices/productSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/store/hooks";
 import styles from "./Product.module.css";
 import Currency from "react-currency-formatter";
+import { addTocart } from "../../redux/slices/cartSlice";
 
 export default function ProductDetails() {
   const { productId }: any = useParams();
@@ -33,6 +34,15 @@ export default function ProductDetails() {
     setSize(newSize);
   };
 
+  const handleAddToCart = () => {
+    const cart = {
+      product: product,
+      size: size,
+      qty: qty,
+    };
+    dispatch(addTocart(cart));
+  };
+
   if (product) {
     return (
       <div className={styles.product_details_container}>
@@ -60,6 +70,7 @@ export default function ProductDetails() {
             {availableSizes.map((s, index) => {
               return (
                 <div
+                  key={index}
                   className={s === size ? styles.selected : ""}
                   onClick={() => handleChangeSize(s)}
                 >
@@ -69,7 +80,7 @@ export default function ProductDetails() {
             })}
           </div>
 
-          <button>Add to cart</button>
+          <button onClick={handleAddToCart}>Add to cart</button>
 
           <h3>Product details </h3>
           <p>{product.description} </p>

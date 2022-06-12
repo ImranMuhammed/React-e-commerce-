@@ -1,5 +1,5 @@
 import Currency from "react-currency-formatter";
-import { Product } from "../../redux/slices/productSlice";
+import { Product } from "../../models/models";
 import styles from "./Product.module.css";
 
 type Props = { product: Product };

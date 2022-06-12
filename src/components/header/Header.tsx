@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { getAllCategories } from "../../redux/slices/productSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/store/hooks";
 import styles from "./Header.module.css";
+import { ShoppingCartIcon } from "@heroicons/react/outline";
 
 export default function Header() {
   const { categories } = useAppSelector((state) => state.products);
+  const { cartItems } = useAppSelector((state) => state.carts);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -26,6 +28,11 @@ export default function Header() {
             );
           })}
         </>
+      </div>
+
+      <div className={styles.cart}>
+        <ShoppingCartIcon />
+        {cartItems.length > 0 && <p>{cartItems.length}</p>}
       </div>
     </header>
   );
