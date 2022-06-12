@@ -13,8 +13,6 @@ export default function Home() {
     dispatch(getAllProducts());
   }, [dispatch]);
 
-  console.log(products.map(p=> p.rating.rate))
-
   return (
     <div className={styles.container}>
       {products?.map((product, index) => {
