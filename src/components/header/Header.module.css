@@ -1,0 +1,29 @@
+header{
+    background-color: #fff;
+    padding: 1rem 3rem;
+    position: sticky;
+    top:0;
+    z-index: 100;
+}
+
+.category-container{
+    width:80%;
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+
+}
+
+.category-container a{
+    margin:1rem;
+    text-transform: capitalize;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: italic;
+    color:#000;
+}
+
+.category-container p:hover{
+    color:#ec684a
+}

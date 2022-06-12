@@ -1,0 +1,147 @@
+.container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin-top: 2rem;
+  align-items: center;
+  justify-content: center;
+  max-width: 1500px;
+  margin: auto;
+}
+
+.gridItem {
+  position: relative;
+  width: 20rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  padding: 2rem;
+  justify-content: center;
+  overflow: hidden;
+  margin: 2rem 3rem;
+}
+
+.gridItem p {
+  text-transform: capitalize;
+  text-align: right;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: gray;
+  margin-bottom: 1.5rem;
+}
+
+.gridItem h3 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.currency {
+  font-weight: 600;
+  text-align: left;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Product details page */
+
+.product_details_container {
+  background-color: #fff;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  padding: 3rem;
+  justify-content: space-between;
+}
+
+.product_details {
+  width: 50%;
+  padding-left: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.product_details h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.product_details h3 {
+  font-size: 1.3rem;
+  margin: 1.5rem 0 0.5rem 0;
+}
+
+.product_details p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #5e5d5d;
+  line-height: 1.2rem;
+}
+
+.counter {
+  margin-bottom: 2rem;
+}
+.counter span {
+  font-size: 1.5rem;
+  border: 1px solid #d9d9d9;
+  padding: 0.2rem 1rem;
+}
+
+.counter > span:nth-child(2),
+span:nth-child(4) {
+  cursor: pointer;
+  background-color: #eeeeee;
+}
+
+.counter > span:nth-child(2):hover,
+span:nth-child(4):hover {
+  background-color: #dddddd;
+}
+
+.sizes {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.sizes div {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.6rem;
+display: flex;
+align-items: center;
+justify-content: center;
+  border: 1px solid #d9d9d9;
+  border-radius: 50%;
+  margin-right: 0.6rem;
+  background-color: #fff;
+}
+
+.sizes div:hover {
+    cursor: pointer;
+    background-color: #EEEEEE;
+  }
+
+  .sizes .selected {
+    background-color: #ec4b27 !important;
+  }
+  
+
+.product_details button {
+  outline-width: 0;
+  border: none;
+  background-color: #ec4b27;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+}
+
+.product_details button:hover {
+  background-color: #da3d1a;
+}
